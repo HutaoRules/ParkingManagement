@@ -12,7 +12,6 @@ class NguoiDung(db.Model):
     DiaChi = db.Column(db.String(100), nullable=True)
     QueQuan = db.Column(db.String(50), nullable=True)
     SDT = db.Column(db.String(10), nullable=False)
-    VaiTro = db.Column(db.String(10), nullable=False)
 
     type = db.Column(db.String(20))
     __mapper_args__ = {
