@@ -1,0 +1,65 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+env/
+ENV/
+.venv/
+.pyvenv/
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Flask specific
+instance/
+*.sqlite3
+*.db
+
+# Logs and local files
+*.log
+*.pot
+*.pid
+*.seed
+*.cover
+*.orig
+*.pyc
+*.pyo
+*.swo
+*.swp
+
+# MySQL settings
+*.sql
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# PyCharm project files
+.idea/
+
+# VS Code project files
+.vscode/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Python specific
+*.env
+*.venv
+*.pytest_cache
+.coverage
+
+# Pytest cache
+.pytest_cache/
+.cache/
+
+# Database URL
+config.py
