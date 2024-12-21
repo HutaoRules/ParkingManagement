@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thông tin vé</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .container {
+            display: flex;
+            width: 100%;
+        }
+
+        .sidebar {
+            background-color: #e0f2f7;
+            width: 200px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .profile {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: #ddd;
+            margin-bottom: 10px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23777'%3E%3Cpath d='M12 2a5 5 0 1 0 5 5 5 5 0 0 0-5-5zm0 9a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm9 11v-1c0-1.1-.9-2-2-2h-2a4 4 0 0 0-4 4v1h8zM5 20v-1c0-1.1-.9-2-2-2H1a4 4 0 0 0 4 4v1h8z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 50%;
+        }
+
+        .navigation {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .navigation a {
+            display: block;
+            padding: 10px;
+            text-decoration: none;
+            color: #333;
+            margin-bottom: 5px;
+            border-radius: 5px;
+        }
+
+        .navigation a:hover {
+            background-color: #cce5ff;
+        }
+
+        .main-content {
+            flex-grow: 1;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #007bff;
+        }
+
+        .ticket-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        .ticket-table th, .ticket-table td {
+            border: 1px solid #007bff;
+            padding: 10px;
+            text-align: left;
+            background-color: #e0f2f7;
+        }
+        .ticket-table th{
+            text-align: center;
+        }
+
+        .activate-button {
+            display: block;
+            width: 150px;
+            margin: 0 auto;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .activate-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="profile">
+                <div class="avatar"></div>
+                <div class="name">Đỗ Hoàng Tuấn</div>
+            </div>
+            <nav class="navigation">
+                <a href="#">Trang chủ</a>
+                <a href="#">Tìm kiếm</a>
+                <a href="#">Tài khoản</a>
+                <a href="#">Đăng xuất</a>
+            </nav>
+        </aside>
+        <main class="main-content">
+            <h1>Thông tin vé</h1>
+            <table class="ticket-table">
+                <thead>
+                    <tr>
+                        <th>Loại vé</th>
+                        <th>Mã vé</th>
+                        <th>Ngày hết hạn</th>
+                        <th>Trạng thái</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Vé xe đạp</td>
+                        <td>XEDAP01</td>
+                        <td></td>
+                        <td>Unactive</td>
+                    </tr>
+                    <tr>
+                        <td>Vé xe máy</td>
+                        <td>XMAY02</td>
+                        <td></td>
+                        <td>Unactive</td>
+                    </tr>
+                    <tr>
+                        <td>Vé tháng</td>
+                        <td>THANG01</td>
+                        <td>08-07-2024</td>
+                        <td>Active</td>
+                    </tr>
+                </tbody>
+            </table>
+            <button class="activate-button">Kích hoạt</button>
+        </main>
+    </div>
+</body>
+</html>

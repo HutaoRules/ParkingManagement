@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sample UI</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #eaf7fc;
+            display: flex;
+            height: 100vh;
+        }
+
+        .sidebar {
+            background: #b3d9f7;
+            width: 250px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .sidebar .profile {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .sidebar .avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: #ffffff;
+            margin: 0 auto 10px;
+            background-image: url('https://via.placeholder.com/80');
+            background-size: cover;
+        }
+
+        .sidebar p {
+            margin: 0;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .sidebar nav a {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            color: #000;
+            text-decoration: none;
+            background: #ffffff;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .sidebar nav a:hover {
+            background: #a3cde4;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 20px;
+            background: #f9fcff;
+        }
+
+        .balance {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .balance span {
+            font-size: 18px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .balance input {
+            width: 150px;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-align: right;
+        }
+
+        .actions {
+            display: flex;
+            justify-content: space-evenly;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .action {
+            width: 150px;
+            text-align: center;
+        }
+
+        .action .icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            color: #000;
+            background: #ffffff;
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 10px;
+            border-radius: 40px;
+            border: 1px solid #ccc;
+        }
+
+        .action button {
+            width: 100%;
+            padding: 10px 0;
+            font-size: 14px;
+            color: #fff;
+            background-color: #4da6ff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .action button:hover {
+            background-color: #007acc;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="profile">
+            <div class="avatar"></div>
+            <p>Đỗ Hoàng Tuấn</p>
+        </div>
+        <nav>
+            <a href="#">Trang chủ</a>
+            <a href="#">Tìm kiếm</a>
+            <a href="#">Tài khoản</a>
+            <a href="#">Đăng xuất</a>
+        </nav>
+    </div>
+
+    <div class="main-content">
+        <div class="balance">
+            <span>Số dư</span>
+            <input type="text" value="10,000" readonly>
+        </div>
+        <div class="actions">
+            <div class="action">
+                <div class="icon">i</div>
+                <button>Thông tin vé</button>
+            </div>
+            <div class="action">
+                <div class="icon">🎟️</div>
+                <button>Mua vé</button>
+            </div>
+            <div class="action">
+                <div class="icon">⬆️⬇️</div>
+                <button>Nạp tiền</button>
+            </div>
+            <div class="action">
+                <div class="icon">🛒</div>
+                <button>Giỏ hàng</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

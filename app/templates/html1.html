@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            display: flex;
+            min-height: 100vh;
+            background-color: #f0f9ff;
+        }
+
+        .container {
+            display: flex;
+            width: 100%;
+            position: relative;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background-color: #e0f2f7; /* Light blue */
+            width: 200px; /* Sidebar width */
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .profile {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: #ddd;
+            margin-bottom: 10px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23777'%3E%3Cpath d='M12 2a5 5 0 1 0 5 5 5 5 0 0 0-5-5zm0 9a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm9 11v-1c0-1.1-.9-2-2-2h-2a4 4 0 0 0-4 4v1h8zM5 20v-1c0-1.1-.9-2-2-2H1a4 4 0 0 0 4 4v1h8z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 50%;
+        }
+
+        .navigation {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .navigation a {
+            display: block;
+            padding: 10px;
+            text-decoration: none;
+            color: #333;
+            margin-bottom: 5px;
+            border-radius: 5px;
+        }
+
+        .navigation a:hover {
+            background-color: #cce5ff;
+        }
+
+        /* Top-right balance section */
+        .balance {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .balance span {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .balance input {
+            width: 120px;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-align: right;
+        }
+
+        /* Main content */
+        .main-content {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+        }
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 20px; /* Space between cards */
+            text-align: center;
+        }
+
+        .action-card {
+            background: #ffffff;
+            width: 150px;
+            height: 150px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease, background-color 0.2s ease;
+        }
+
+        .action-card:hover {
+            transform: translateY(-5px);
+            background-color: #eef8ff;
+        }
+
+        .action-card i {
+            font-size: 32px;
+            color: #007bff;
+        }
+
+        .action-card span {
+            font-size: 14px;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="profile">
+                <div class="avatar"></div>
+                <div class="name">Đỗ Hoàng Tuấn</div>
+            </div>
+            <nav class="navigation">
+                <a href="#">Trang chủ</a>
+                <a href="#">Tìm kiếm</a>
+                <a href="#">Tài khoản</a>
+                <a href="#">Đăng xuất</a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="actions">
+                <div class="action-card">
+                    <i class="fas fa-info"></i>
+                    <span>Thông tin vé</span>
+                </div>
+                <div class="action-card">
+                    <i class="fas fa-ticket"></i>
+                    <span>Mua vé</span>
+                </div>
+                <div class="action-card">
+                    <i class="fas fa-money-bill-transfer"></i>
+                    <span>Nạp tiền</span>
+                </div>
+                <div class="action-card">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span>Giỏ hàng</span>
+                </div>
+            </div>
+        </main>
+
+        <!-- Balance Section -->
+        <div class="balance">
+            <span>Số dư:</span>
+            <input type="text" value="10,000" readonly>
+        </div>
+    </div>
+</body>
+</html>
