@@ -1,6 +1,6 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from config import Config
+from app.config import Config
 
 db = SQLAlchemy()
 
@@ -11,7 +11,6 @@ def create_app():
     db.init_app(app)
     
     with app.app_context():
-        from app.routes import routes
-        app.register_blueprint(routes)
-    
+        from app.blueprints.login import auth_bp
+        app.register_blueprint(auth_bp)
     return app

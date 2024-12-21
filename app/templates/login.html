@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+    
+</head>
+<body>
+    <div class="container">
+        <h1>HỆ THỐNG QUẢN LÝ THU PHÍ ĐỖ XE</h1>
+        <h2>CHỌN VAI TRÒ CỦA BẠN</h2>
+        <button class="button"><a href="{{ url_for('auth.login', type = 'customer')}}">Khách hàng</a></button>
+        <button class="button"><a href="{{ url_for('auth.login', type = 'staff')}}">Nhân viên</a></button>
+        <button class="button"><a href="{{ url_for('auth.login', type = 'manager')}}">Quản trị viên</a></button>
+    </div>
+</body>
+</html>
