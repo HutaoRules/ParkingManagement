@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/template.css') }}"> -->
+    <style>
+ body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    display: flex;
+    min-height: 100vh;
+    background-color: #f4f7fc;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+}
+
+/* Sidebar với hiệu ứng màu xanh lam loang */
+/* Sidebar với hiệu ứng màu xanh lam loang từ dưới lên trên */
+.sidebar {
+    width: 240px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(to top, #1a89bd, #e0f2f7); /* Loang từ màu xanh lam đậm đến nhạt từ dưới lên trên */
+}
+
+
+
+.profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+}
+.avatar {
+    width: 200px; /* Tăng kích thước avatar */
+    height: 200px; /* Tăng kích thước avatar */
+    border-radius: 50%;
+    margin-bottom: 15px;
+    background-position: center;
+    background-size: cover;
+    border: 3px solid #fff;
+}
+
+
+.name {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+}
+
+.navigation {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;  /* Căn giữa các liên kết */
+    gap: 20px;  /* Khoảng cách giữa các liên kết */
+    margin-top: 40px;  /* Thêm khoảng cách từ phần profile */
+}
+
+.navigation a {
+    display: block;
+    padding: 15px 20px;
+    text-decoration: none;
+    color: #333;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    font-size: 18px;  /* Tăng cỡ chữ */
+    font-weight: bold;  /* Làm chữ đậm */
+    text-align: left;  /* Căn giữa nội dung chữ */
+}
+
+.navigation a:hover {
+    background-color: #cce5ff;
+    color: #007bff;
+}
+
+.navigation .logout {
+    margin-top: auto;  /* Đẩy "Đăng xuất" xuống dưới cùng */
+    font-size: 16px;  /* Giảm cỡ chữ của nút Đăng xuất */
+    font-weight: normal;  /* Làm chữ nhẹ hơn */
+}
+
+
+.main-content {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+    text-align: center;
+}
+
+.action-card {
+    background: #81dff0; /* Nền xanh lam */
+    width: 250px; /* Kích thước của nút */
+    height: 500px; /* Kích thước của nút */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    border-radius: 50px;
+    border: 2px solid #000; /* Viền đen */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.action-card:hover {
+    transform: translateY(-10px);
+    background-color: #e6f1ff;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.action-card i {
+    font-size: 50px; /* Tăng kích thước icon */
+}
+
+.action-card span {
+    font-size: 18px; /* Tăng cỡ chữ */
+    font-weight: bold;
+    color: #333;
+}
+.action-card img.icon {
+    width: 150px;  /* Tăng kích thước hình ảnh */
+    height: 150px; /* Tăng kích thước hình ảnh */
+}
+
+
+.action-card a {
+    width: 150px;
+    display: block;
+    padding: 10px 15px;
+    background-color: #006c9f;  /* Nền xanh đậm */
+    color: #fff;  /* Màu chữ trắng */
+    border: 2px solid #000;  /* Viền đen */
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 10px;  /* Khoảng cách giữa ảnh và văn bản */
+    text-decoration: none;  /* Bỏ gạch chân */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+/* Thay đổi màu khi hover */
+.action-card a:hover {
+    background-color: #004f7f;  /* Màu nền khi hover */
+    color: #e0f2f7;  /* Màu chữ khi hover */
+}
+
+
+.balance {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background-color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 50px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.balance span {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+
+.balance-amount {
+    font-size: 22px;
+    font-weight: bold;
+    color: #007bff;
+}
+
+.icon {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+}
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="profile">
+                <div >
+                    <img class="avatar" src="{{ url_for('static', filename='image/dotuan.png') }}" alt="Avatar">
+                </div>
+                <p class="name">{{ user.hoTen }}</p>
+            </div>
+            <nav class="navigation">
+                <a href="{{ url_for('customer.index')}}">Trang chủ</a>
+                <a href="#">Tìm kiếm</a>
+                <a href="#">Tài khoản</a>
+                <a href="{{ url_for('customer.logout')}}" class="logout">Đăng xuất</a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="actions">
+                <div class="action-card">
+                    <img class = "icon" src="{{ url_for('static', filename='image/infor.png') }}" alt="Information">
+                    <a href="{{ url_for('customer.ticketdetail') }}"><span>Thông tin vé</span></a>
+                </div>
+                <div class="action-card">
+                    <img class = "icon" src="{{ url_for('static', filename='image/ticket.png') }}" alt="Ticket">
+                    <a href="{{ url_for('customer.buy_ticket') }}"><span>Mua vé</span></a>
+                </div>
+                <div class="action-card">
+                    <img class = "icon" src="{{ url_for('static', filename='image/transaction.png') }}" alt="Deposit">
+                    <a href="{{ url_for('customer.deposit') }}"><span>Nạp tiền</span></a>
+                </div>
+                <div class="action-card">
+                    <img class = "icon" src="{{ url_for('static', filename='image/cart.png') }}" alt="Cart">
+                    <a href="{{ url_for('customer.cart') }}"><span>Giỏ hàng</span></a>
+                </div>
+            </div>
+        </main>
+
+        <!-- Balance Section -->
+        <div class="balance">
+            <span>Số dư:</span>
+            <span class="balance-amount">{{ customer.soDu | round(0) }}</span>
+
+        </div>
+    </div>
+</body>
+</html>

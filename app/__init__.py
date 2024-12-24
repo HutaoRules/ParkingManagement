@@ -11,6 +11,7 @@ def create_app():
     db.init_app(app)
     
     with app.app_context():
-        from app.blueprints.login import auth_bp
+        from app.blueprints import auth_bp, customer_bp
         app.register_blueprint(auth_bp)
+        app.register_blueprint(customer_bp)
     return app

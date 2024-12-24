@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giỏ Hàng</title>
+    <style>
+        .sidebar {
+    width: 240px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(to top, #1a89bd, #e0f2f7); /* Loang từ màu xanh lam đậm đến nhạt từ dưới lên trên */
+}
+
+
+
+.profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+}
+.avatar {
+    width: 200px; /* Tăng kích thước avatar */
+    height: 200px; /* Tăng kích thước avatar */
+    border-radius: 50%;
+    margin-bottom: 15px;
+    background-position: center;
+    background-size: cover;
+    border: 3px solid #fff;
+}
+
+
+.name {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+}
+
+.navigation {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;  /* Căn giữa các liên kết */
+    gap: 20px;  /* Khoảng cách giữa các liên kết */
+    margin-top: 40px;  /* Thêm khoảng cách từ phần profile */
+}
+
+.navigation a {
+    display: block;
+    padding: 15px 20px;
+    text-decoration: none;
+    color: #333;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    font-size: 18px;  /* Tăng cỡ chữ */
+    font-weight: bold;  /* Làm chữ đậm */
+    text-align: left;  /* Căn giữa nội dung chữ */
+}
+
+.navigation a:hover {
+    background-color: #cce5ff;
+    color: #007bff;
+}
+
+.navigation .logout {
+    margin-top: auto;  /* Đẩy "Đăng xuất" xuống dưới cùng */
+    font-size: 16px;  /* Giảm cỡ chữ của nút Đăng xuất */
+    font-weight: normal;  /* Làm chữ nhẹ hơn */
+}
+
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            display: flex;
+            min-height: 100vh;
+            background-color: #f4f4f9;
+        }
+
+        .container {
+            display: flex;
+            width: 100%;
+
+        }
+
+        .cart-box {
+
+    padding: 30px;
+    width: 100%;
+    margin-top: 20px;
+    flex-grow: 1; /* Đảm bảo phần này chiếm không gian còn lại */
+}
+
+        .cart-box h2 {
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            color: #007bff;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ddd;
+            padding: 15px 0;
+        }
+
+        .cart-item-name {
+            font-size: 1.2em;
+            color: #333;
+            flex: 2;
+        }
+
+        .cart-item-price {
+            font-size: 1.2em;
+            color: #555;
+            flex: 1;
+        }
+
+        .cart-item-remove {
+            font-size: 1.2em;
+            color: #dc3545;
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        .cart-summary {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            width: 100%;
+        }
+
+        .cart-summary-total {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        .checkout-button {
+            padding: 15px 30px;
+            font-size: 1.4em;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .checkout-button:hover {
+            background-color: #218838;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+            <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="profile">
+                <div >
+                    <img class="avatar" src="{{ url_for('static', filename='image/dotuan.png') }}" alt="Avatar">
+                </div>
+                <p class="name">{{ user.hoTen }}</p>
+            </div>
+            <nav class="navigation">
+                <a href="{{ url_for('customer.index')}}">Trang chủ</a>
+                <a href="#">Tìm kiếm</a>
+                <a href="#">Tài khoản</a>
+                <a href="{{ url_for('customer.logout')}}" class="logout">Đăng xuất</a>
+            </nav>
+        </aside>
+        <div class="cart-box">
+            <!-- Container giỏ hàng -->
+            <main class="main-content">
+            <h2>Giỏ Hàng</h2>
+
+            <!-- Container render danh sách item -->
+            <div id="cart-items"></div>
+
+            <!-- Tổng tiền và nút thanh toán -->
+            <div class="cart-summary">
+                <span id="cart-total" class="cart-summary-total">Tổng: 0 VND</span>
+                <button class="checkout-button" onclick="checkout()">Thanh Toán</button>
+            </div>
+        </main>
+        </div>
+    </div>
+
+    <script>
+        // Lấy dữ liệu từ server (được render trước từ Flask)
+        let cartData = JSON.parse('{{ cart|tojson|safe }}');
+
+        function formatPrice(price) {
+        return price.toFixed(0); // Loại bỏ phần thập phân
+    }
+
+    function renderCart() {
+    const cartItemsContainer = document.getElementById('cart-items');
+    cartItemsContainer.innerHTML = ''; // Xóa nội dung cũ
+    let total = 0;
+
+    // Render từng item trong giỏ hàng
+    cartData.forEach((item, index) => {
+        const name = item.tenLoaiVe; // Truy cập thuộc tính tên vé
+        const price = item.giaVe; // Truy cập thuộc tính giá vé
+        const numericPrice = parseFloat(price);
+
+        const cartItem = document.createElement('div');
+        cartItem.className = 'cart-item';
+
+        cartItem.innerHTML = `
+            <span class="cart-item-name">${name}</span>
+            <span class="cart-item-price">${formatPrice(numericPrice)} VND</span>
+            <span class="cart-item-remove" onclick="removeItem(${index})">Xóa</span>
+        `;
+
+        cartItemsContainer.appendChild(cartItem);
+        total += numericPrice; // Tính tổng tiền
+    });
+
+    // Hiển thị tổng tiền (sử dụng formatPrice để định dạng)
+    document.getElementById('cart-total').textContent = `Tổng: ${formatPrice(total).toLocaleString()} VND`;
+}
+
+        // Hàm xử lý xóa item
+        function removeItem(index) {
+            fetch(`/customer/cart/remove/${index}`, { method: 'POST' })
+                .then(response => {
+                    if (response.ok) {
+                        cartData.splice(index, 1); // Xóa item khỏi giỏ hàng
+                        renderCart(); // Render lại
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        // Hàm xử lý thanh toán
+        function checkout() {
+            fetch(`/customer/cart/checkout`, { method: 'POST' })
+                .then(response => {
+                    if (response.ok) {
+                        alert('Thanh toán thành công!');
+                        cartData = []; // Reset giỏ hàng
+                        renderCart(); // Cập nhật giao diện
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        // Khởi tạo render lần đầu
+        renderCart();
+    </script>
+</body>
+</html>

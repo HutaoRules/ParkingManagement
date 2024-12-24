@@ -113,13 +113,14 @@
         <aside class="sidebar">
             <div class="profile">
                 <div class="avatar"></div>
-                <div class="name">Đỗ Hoàng Tuấn</div>
+                <!-- Display user's full name -->
+                <p class="name">{{ user.hoTen }}</p>
             </div>
             <nav class="navigation">
-                <a href="#">Trang chủ</a>
+                <a href="{{ url_for('customer.index')}}">Trang chủ</a>
                 <a href="#">Tìm kiếm</a>
                 <a href="#">Tài khoản</a>
-                <a href="#">Đăng xuất</a>
+                <a href="{{ url_for('customer.logout')}}">Đăng xuất</a>
             </nav>
         </aside>
         <main class="main-content">
